@@ -32,7 +32,7 @@ public int pokemonBallCount;
 public int hp;
 ```
 
-## 如何读取及修改
+## 如何读取及修改全局变量
 首先在自己的脚本中声明两个变量，一个是`player`，一个是`global`。
 ```
 private GameObject player;
