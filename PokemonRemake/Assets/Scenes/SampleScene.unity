@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cff0f59f3935e4fbf22359f9719477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pokemon: 0
   speed: 1
   turnSpeed: 1
 --- !u!1001 &204943447
@@ -1562,7 +1563,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7910039141092014009, guid: bf4cbe39780468141983c614aa0ac932, type: 3}
 --- !u!54 &275040318
@@ -1622,6 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cff0f59f3935e4fbf22359f9719477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pokemon: 2
   speed: 1
   turnSpeed: 1
 --- !u!1 &344299821 stripped
@@ -3182,7 +3184,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8713584401733986614, guid: 6e567a2dd2c7a624a90808ba8a85bb14, type: 3}
 --- !u!54 &580773996
@@ -3579,6 +3581,8 @@ MonoBehaviour:
   status: 0
   pokemonBallCount: 0
   hp: 0
+  pokemonCount: 0
+  pokemons: 
 --- !u!4 &690173481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ee73a3c765cba24b82501ce85f4f4c7, type: 3}
@@ -5202,7 +5206,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1364249024153195206, guid: 5424a97c6879c6a40a575700f9402319, type: 3}
 --- !u!54 &1055672659
@@ -6946,6 +6950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cff0f59f3935e4fbf22359f9719477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pokemon: 1
   speed: 1
   turnSpeed: 1
 --- !u!1001 &1641062155
