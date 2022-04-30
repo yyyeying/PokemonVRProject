@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Global: MonoBehaviour
+public class Global : MonoBehaviour
 {
     static int MAX_HP = 100;
     static int MIN_HP = 20;
@@ -38,7 +38,7 @@ public class Global: MonoBehaviour
     public int hp;
     public int pokemonCount;
     public Dictionary<Berry, int> berryCount = new Dictionary<Berry, int>();
-    public Dictionary<Pokemon, Berry> likeList = new Dictionary<Pokemon, Berry> 
+    public Dictionary<Pokemon, Berry> likeList = new Dictionary<Pokemon, Berry>
     {
         {Pokemon.BULBASAUR, Berry.BLUE}
     };
@@ -51,7 +51,7 @@ public class Global: MonoBehaviour
         status = GameStat.WALK;
         pokemonBallCount = BALL_NUM_INIT;
         hp = MAX_HP;
-        foreach(Berry b in System.Enum.GetValues(typeof(Berry)))
+        foreach (Berry b in System.Enum.GetValues(typeof(Berry)))
         {
             berryCount[b] = BERRY_NUM_INIT;
         }
@@ -63,7 +63,7 @@ public class Global: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -139,7 +139,7 @@ public class Battle
             Debug.Log("ThrowBerry: KeyError.");
             return false;
         }
-        if(global.berryCount[berry] > 0)
+        if (global.berryCount[berry] > 0)
         {
             Debug.Log("ThrowBerry: Throw berry " + berry + " success.");
             global.berryCount[berry]--;
@@ -158,12 +158,12 @@ public class Battle
 
     public void BerryHit(bool success)
     {
-        if(success)
+        if (success)
         {
             lastBerry = thrownBerry;
-            if(pokemonHappiness < HAPPY_MAX)
+            if (pokemonHappiness < HAPPY_MAX)
             {
-                if(lastBerry == global.likeList[pokemon])
+                if (lastBerry == global.likeList[pokemon])
                 {
                     pokemonHappiness = Mathf.Min(pokemonHappiness + HAPPY_LIKE, HAPPY_MAX);
                 }
@@ -183,12 +183,12 @@ public class Battle
 
     public bool ThrowBall()
     {
-        if(global.status != Global.GameStat.BATTLE)
+        if (global.status != Global.GameStat.BATTLE)
         {
             Debug.Log("ThrowBall: WrongGameStatusError.");
             return false;
         }
-        if(global.pokemonBallCount > 0)
+        if (global.pokemonBallCount > 0)
         {
             Debug.Log("ThrowBall: Success.");
             global.pokemonBallCount--;
@@ -203,7 +203,7 @@ public class Battle
 
     public bool BallHit()
     {
-        if(pokemonHappiness >= HAPPY_THRESHOLD)
+        if (pokemonHappiness >= HAPPY_THRESHOLD)
         {
             successRate = SUCC_HI;
         }
@@ -212,7 +212,7 @@ public class Battle
             successRate = SUCC_INIT;
         }
         int cat = Random.Range(0, 100);
-        if(cat < successRate)
+        if (cat < successRate)
         {
             Debug.Log("BallHit: success");
             global.status = Global.GameStat.WALK;
@@ -222,7 +222,7 @@ public class Battle
         }
         else
         {
-            if(throwCount >= 3 || global.hp < 30 || global.pokemonBallCount == 0)
+            if (throwCount >= 3 || global.hp < 30 || global.pokemonBallCount == 0)
             {
                 global.status = Global.GameStat.WALK;
             }
@@ -233,11 +233,11 @@ public class Battle
 
     public void PokemonTurn()
     {
-        if(isPlayerTurn)
+        if (isPlayerTurn)
         {
             return;
         }
-        if(lastBerry == global.likeList[pokemon])
+        if (lastBerry == global.likeList[pokemon])
         {
             global.hp -= HP_LIKE;
         }
