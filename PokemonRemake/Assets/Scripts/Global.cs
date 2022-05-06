@@ -28,7 +28,16 @@ public class Global : MonoBehaviour
     {
         BULBASAUR,
         SQUIRTLE,
-        CHARMANDER
+        CHARMANDER,
+        PONYTA,
+        LAPRAS,
+        MAGIKARP,
+        CYNDAQUIL,
+        BELLOSSOM,
+        MOLTRES,
+        PIDGEY,
+        EEVEE,
+        PIKACHU
     }
 
     public GameStat status;
@@ -40,7 +49,13 @@ public class Global : MonoBehaviour
     public Dictionary<Berry, int> berryCount = new Dictionary<Berry, int>();
     public Dictionary<Pokemon, Berry> likeList = new Dictionary<Pokemon, Berry>
     {
-        {Pokemon.BULBASAUR, Berry.BLUE}
+        {Pokemon.BULBASAUR, Berry.GREEN},
+        {Pokemon.SQUIRTLE, Berry.GREEN},
+        {Pokemon.CHARMANDER, Berry.PINK},
+        {Pokemon.CYNDAQUIL, Berry.ORANGE},
+        {Pokemon.BELLOSSOM, Berry.ORANGE},
+        {Pokemon.EEVEE, Berry.YELLOW},
+        {Pokemon.PIKACHU, Berry.BLUE}
     };
     public Pokemon[] pokemons;
 
@@ -84,6 +99,17 @@ public class Global : MonoBehaviour
                 hp++;
             }
         }
+    }
+
+    public bool PickBerry(Berry berry)
+    {
+        if (!berryCount.ContainsKey(berry))
+        {
+            Debug.Log("PickBerry: KeyError.");
+            return false;
+        }
+        berryCount[berry]++;
+        return true;
     }
 }
 
