@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AvianController : MonoBehaviour
 {
-    static float height = 16f;
+    static float height = 30.0f;
     static int max_count = 400;
     private GameObject player;
     private Global global;
@@ -12,8 +12,8 @@ public class AvianController : MonoBehaviour
     private Rigidbody mRigid;
 
     public Global.Pokemon pokemon;
-    public float speed = 1.0f;
-    public float turnSpeed = 1.0f;
+    public float speed = 0.5f;
+    public float turnSpeed = 0.5f;
 
     private Vector3 originPos;
     private Vector3 targetTrans;
