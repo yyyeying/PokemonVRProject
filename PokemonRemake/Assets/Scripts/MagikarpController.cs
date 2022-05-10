@@ -40,7 +40,7 @@ public class MagikarpController : MonoBehaviour
         transform.Translate(translationHorizon + translationVertical);
         Quaternion q = Quaternion.LookRotation(new Vector3(targetTrans.x, 1000 * heightDiff, targetTrans.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, q, turnSpeed * Time.deltaTime);
-        //Debug.Log(Terrain.activeTerrain.SampleHeight(transform.position));
+        Debug.Log(Terrain.activeTerrain.SampleHeight(transform.position));
         if (transform.position.y < terrainHeight)
         {
             mAnim.SetBool("Walk", true);

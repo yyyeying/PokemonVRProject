@@ -42,11 +42,12 @@ public class Global : MonoBehaviour
 
     public GameStat status;
     public Battle battle;
+    public InfoPanel infoPanel;
 
     public int pokemonBallCount;
     public int hp;
-    public int pokemonCount;
     public Dictionary<Berry, int> berryCount = new Dictionary<Berry, int>();
+    public Dictionary<Pokemon, int> pokemons = new Dictionary<Pokemon, int>();
     public Dictionary<Pokemon, Berry> likeList = new Dictionary<Pokemon, Berry>
     {
         {Pokemon.BULBASAUR, Berry.GREEN},
@@ -57,7 +58,6 @@ public class Global : MonoBehaviour
         {Pokemon.EEVEE, Berry.YELLOW},
         {Pokemon.PIKACHU, Berry.BLUE}
     };
-    public Pokemon[] pokemons;
 
     private int recoverConunt;
 
@@ -70,8 +70,6 @@ public class Global : MonoBehaviour
         {
             berryCount[b] = BERRY_NUM_INIT;
         }
-        pokemons = new Pokemon[10];
-        pokemonCount = 0;
         battle = null;
     }
 
@@ -97,6 +95,7 @@ public class Global : MonoBehaviour
             if (recoverConunt == REC_INT)
             {
                 hp++;
+                recoverConunt = 0;
             }
         }
     }
@@ -155,11 +154,11 @@ public class Battle
 
     public bool ThrowBerry(Global.Berry berry)
     {
-        if (global.status != Global.GameStat.BATTLE)
-        {
-            Debug.Log("ThrowBerry: WrongGameStatusError.");
-            return false;
-        }
+        //if (global.status != Global.GameStat.BATTLE)
+        //{
+        //    Debug.Log("ThrowBerry: WrongGameStatusError.");
+        //    return false;
+        //}
         if (!global.berryCount.ContainsKey(berry))
         {
             Debug.Log("ThrowBerry: KeyError.");
@@ -199,7 +198,10 @@ public class Battle
                 }
             }
             thrownBerry = Global.Berry.NULL;
-            isPlayerTurn = false;
+            if (global.status == Global.GameStat.BATTLE)
+            {
+                isPlayerTurn = false;
+            }
         }
         else
         {
@@ -242,15 +244,23 @@ public class Battle
         {
             Debug.Log("BallHit: success");
             global.status = Global.GameStat.WALK;
-            global.pokemons[global.pokemonCount] = pokemon;
-            global.pokemonCount++;
+            if (global.pokemons.ContainsKey(pokemon))
+            {
+                global.pokemons[pokemon] += 1;
+            }
+            else
+            {
+                global.pokemons.Add(pokemon, 1);
+            }
             return true;
         }
         else
         {
+            Debug.Log("BallHit: fail");
             if (throwCount >= 3 || global.hp < 30 || global.pokemonBallCount == 0)
             {
                 global.status = Global.GameStat.WALK;
+                global.infoPanel.HidepokenhappinessSlider(false);
             }
             isPlayerTurn = false;
             return false;
@@ -271,6 +281,7 @@ public class Battle
         {
             global.hp -= HP_DISLIKE;
         }
+        global.hp = global.hp <= 0 ? 0 : global.hp;
         isPlayerTurn = true;
         Debug.Log("Pokemon attack, HP: " + global.hp);
     }
